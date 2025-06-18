@@ -59,7 +59,7 @@ const PatientLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${config.apiUrl}/auth/patient-login`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/patient-login`, {
         ...formData,
         role: 'ROLE_PATIENT'
       });

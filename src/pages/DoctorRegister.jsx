@@ -95,7 +95,7 @@ const DoctorRegister = () => {
     }
 
     try {
-      const response = await fetch(`${config.apiUrl}/auth/doctor-register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/doctor-register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -38,7 +38,7 @@ const Login = () => {
       if (success) {
         // Redirect based on role
         const token = localStorage.getItem('token');
-        const response = await fetch('process.env.REACT_APP_API_URL/auth/validate', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/validate`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const userData = await response.json();
