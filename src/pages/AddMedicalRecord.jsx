@@ -81,7 +81,7 @@ const AddMedicalRecord = () => {
         const token = localStorage.getItem('token');
 
         if (isEditing) {
-          const response = await fetch(`http://localhost:8080/medical-records/${id}`, {
+          const response = await fetch(`process.env.REACT_APP_API_URL/medical-records/${id}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             }
@@ -105,7 +105,7 @@ const AddMedicalRecord = () => {
           });
         } else {
           // For new records, fetch appointment details
-          const response = await fetch(`http://localhost:8080/appointments/${id}`, {
+          const response = await fetch(`process.env.REACT_APP_API_URL/appointments/${id}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             }
@@ -225,8 +225,8 @@ const AddMedicalRecord = () => {
     try {
       const token = localStorage.getItem('token');
       const endpoint = isEditing 
-        ? `http://localhost:8080/medical-records/${id}`
-        : 'http://localhost:8080/medical-records';
+        ? `process.env.REACT_APP_API_URL/medical-records/${id}`
+        : 'process.env.REACT_APP_API_URL/medical-records';
 
       const response = await fetch(endpoint, {
         method: isEditing ? 'PUT' : 'POST',

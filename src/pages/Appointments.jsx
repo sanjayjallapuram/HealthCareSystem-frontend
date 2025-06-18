@@ -49,7 +49,7 @@ const Appointments = () => {
         endpoint = `appointments/patient/name/${user.username}`;
       }
 
-      const response = await fetch(`http://localhost:8080/${endpoint}`, {
+      const response = await fetch(`process.env.REACT_APP_API_URL/${endpoint}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

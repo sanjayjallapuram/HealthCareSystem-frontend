@@ -36,7 +36,7 @@ const DoctorDashboard = () => {
   const fetchAppointments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8080/appointments/doctor/name/${user.username}`, {
+      const response = await fetch(`process.env.REACT_APP_API_URL/appointments/doctor/name/${user.username}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -51,7 +51,7 @@ const DoctorDashboard = () => {
       // Fetch medical records for each appointment
       const appointmentsWithRecords = await Promise.all(data.map(async (appointment) => {
         try {
-          const recordResponse = await fetch(`http://localhost:8080/medical-records/appointment/${appointment.id}`, {
+          const recordResponse = await fetch(`process.env.REACT_APP_API_URL/medical-records/appointment/${appointment.id}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -100,7 +100,7 @@ const DoctorDashboard = () => {
         method = 'PUT';
       }
       
-      const response = await fetch(`http://localhost:8080/appointments/${appointmentId}/${status.toLowerCase()}`, {
+      const response = await fetch(`process.env.REACT_APP_API_URL/appointments/${appointmentId}/${status.toLowerCase()}`, {
         method: method,
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -124,7 +124,7 @@ const DoctorDashboard = () => {
   const handleViewRecord = async (appointmentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:8080/medical-records/appointment/${appointmentId}`, {
+      const response = await fetch(`process.env.REACT_APP_API_URL/medical-records/appointment/${appointmentId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
