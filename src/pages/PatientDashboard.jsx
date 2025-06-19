@@ -59,7 +59,7 @@ const PatientDashboard = () => {
       const token = localStorage.getItem('token');
 
       // Log the request details
-      const requestUrl = `${API_BASE_URLL}/appointments/patient/name/${user.username}`;
+      const requestUrl = `${API_BASE_URL}/appointments/patient/name/${user.username}`;
       console.log('Making request to:', requestUrl);
       console.log('With headers:', {
         'Authorization': `Bearer ${token}`,
