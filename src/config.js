@@ -1,5 +1,6 @@
 const config = {
   // API Configuration
+  API_BASE_URL:process.env.REACT_APP_API_URL,
   apiUrl: process.env.REACT_APP_API_URL || 'http://localhost:8080',
   videoCallUrl: process.env.REACT_APP_VIDEO_CALL_URL || 'http://localhost:3000',
   environment: process.env.REACT_APP_ENVIRONMENT || 'development',

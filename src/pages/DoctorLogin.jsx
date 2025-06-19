@@ -14,6 +14,8 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import config from '../config';
+import { API_BASE_URL } from '../config';
+
 
 const DoctorLogin = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +41,7 @@ const DoctorLogin = () => {
     setError(null);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/doctor-login`, {
+      const response = await fetch(`${API_BASE_URL}/auth/doctor-login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

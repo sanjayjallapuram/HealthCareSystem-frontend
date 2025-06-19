@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
+
 
 const AuthContext = createContext(null);
 
@@ -16,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/validate`, {
+        const response = await axios.get(`${API_BASE_URL}/auth/validate`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.data.success) {
@@ -48,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, userData);
+      const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
       if (response.data) {
         localStorage.setItem('token', response.data.token);
         setUser(response.data);

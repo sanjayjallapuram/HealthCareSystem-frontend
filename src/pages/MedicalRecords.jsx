@@ -27,6 +27,8 @@ import {
   TableRow,
 } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,7 +67,7 @@ const MedicalRecords = () => {
         endpoint = `medical-records/patient/${user.username}`;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

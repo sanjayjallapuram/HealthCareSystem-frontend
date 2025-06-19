@@ -15,6 +15,8 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -49,7 +51,7 @@ const Appointments = () => {
         endpoint = `appointments/patient/name/${user.username}`;
       }
 
-      const response = await fetch(`process.env.REACT_APP_API_URL/${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ const Login = () => {
       if (success) {
         // Redirect based on role
         const token = localStorage.getItem('token');
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/validate`, {
+        const response = await fetch(`${API_BASE_URL}/auth/validate`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const userData = await response.json();

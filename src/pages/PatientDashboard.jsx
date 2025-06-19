@@ -29,6 +29,8 @@ import { useAuth } from '../context/AuthContext';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
+
 
 const PatientDashboard = () => {
   const { user } = useAuth();
@@ -57,7 +59,7 @@ const PatientDashboard = () => {
       const token = localStorage.getItem('token');
 
       // Log the request details
-      const requestUrl = `${process.env.REACT_APP_API_URL}/appointments/patient/name/${user.username}`;
+      const requestUrl = `${API_BASE_URLL}/appointments/patient/name/${user.username}`;
       console.log('Making request to:', requestUrl);
       console.log('With headers:', {
         'Authorization': `Bearer ${token}`,
@@ -104,7 +106,7 @@ const PatientDashboard = () => {
       console.log('Fetching doctor details...');
       const appointmentsWithDoctors = await Promise.all(sortedAppointments.map(async (appointment) => {
         try {
-          const doctorUrl = `${process.env.REACT_APP_API_URL}/doctor/${appointment.doctorId}`;
+          const doctorUrl = `${API_BASE_URL}/doctor/${appointment.doctorId}`;
           console.log(`Fetching doctor details from: ${doctorUrl}`);
           
           const doctorResponse = await fetch(doctorUrl, {
@@ -144,7 +146,7 @@ const PatientDashboard = () => {
       // Fetch medical records for each appointment
       const appointmentsWithRecords = await Promise.all(appointmentsWithDoctors.map(async (appointment) => {
         try {
-          const recordResponse = await fetch(`${process.env.REACT_APP_API_URL}/medical-records/appointment/${appointment.id}`, {
+          const recordResponse = await fetch(`${API_BASE_URL}/medical-records/appointment/${appointment.id}`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -192,7 +194,7 @@ const PatientDashboard = () => {
       const token = localStorage.getItem('token');
       console.log('Fetching doctors with token:', token);
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/doctor`, {
+      const response = await fetch(`${API_BASE_URL}/doctor`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -286,7 +288,7 @@ const PatientDashboard = () => {
       setLoading(true);
 
       // Make the API call
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/appointments`, {
+      const response = await fetch(`${API_BASE_URL}/appointments`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -334,7 +336,7 @@ const PatientDashboard = () => {
   const handleCancelAppointment = async (appointmentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/appointments/${appointmentId}/cancel`, {
+      const response = await fetch(`${API_BASE_URL}/appointments/${appointmentId}/cancel`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -359,7 +361,7 @@ const PatientDashboard = () => {
   const handleViewRecord = async (appointmentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/medical-records/appointment/${appointmentId}`, {
+      const response = await fetch(`${API_BASE_URL}/medical-records/appointment/${appointmentId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

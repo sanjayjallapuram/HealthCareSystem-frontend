@@ -11,6 +11,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import PersonIcon from '@mui/icons-material/Person';
+import { API_BASE_URL } from '../config';
+
 
 const LandingPage = () => {
   const navigate = useNavigate();

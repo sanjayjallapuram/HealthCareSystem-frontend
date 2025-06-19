@@ -22,6 +22,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 // Default empty record structure
 const defaultRecord = {
@@ -81,7 +82,7 @@ const AddMedicalRecord = () => {
         const token = localStorage.getItem('token');
 
         if (isEditing) {
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/medical-records/${id}`, {
+          const response = await fetch(`${API_BASE_URL}/medical-records/${id}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             }
@@ -105,7 +106,7 @@ const AddMedicalRecord = () => {
           });
         } else {
           // For new records, fetch appointment details
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/appointments/${id}`, {
+          const response = await fetch(`${API_BASE_URL}/appointments/${id}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
             }

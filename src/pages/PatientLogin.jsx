@@ -15,6 +15,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import config from '../config';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
+
 
 const PatientLogin = () => {
   const [formData, setFormData] = useState({
@@ -59,7 +61,7 @@ const PatientLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/patient-login`, {
+      const response = await axios.post(`${API_BASE_URL}/auth/patient-login`, {
         ...formData,
         role: 'ROLE_PATIENT'
       });
